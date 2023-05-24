@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    >
+
+    <!-- Exit icon top left -->
+    <ImageView
+        android:id="@+id/image_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="8dp"
+        android:src="@drawable/ic_close_24" />
+
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_exit"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp"
+        android:paddingStart="16dp">
+
+        <include
+            android:id="@+id/image_profile"
+            layout="@layout/ic_profile_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
+
+            <TextView
+                android:id="@+id/tv_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="@string/example_name"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_profile_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/example_email"
+                android:textColor="@color/md_theme_light_outline"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Profile picture -->
+
+
+    <!-- Login information views -->
+    <!-- Add your login information views here -->
+
+    <!-- Divider -->
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_header" />
+
+
+    <!-- Sign Out -->
+    <LinearLayout
+        android:id="@+id/layout_sign_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_header"
+        android:gravity="center_vertical"
+        android:paddingVertical="16dp"
+        android:paddingStart="16dp">
+
+        <ImageView
+            android:id="@+id/image_sign_out"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_exit_to_app_24" />
+
+        <TextView
+            android:id="@+id/text_sign_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:text="@string/sign_out"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

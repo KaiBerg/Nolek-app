@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/main_fragment_nav"
+        android:name="com.nolek.application.data.ui.listDetail.ListDetailFragment"
+        android:label="Main"
+        tools:layout="@layout/fragment_list_detail">
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.nolek.application.data.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_main_fragment_nav"
+            app:destination="@id/main_fragment_nav" />
+        <action
+            android:id="@+id/action_loginFragment_to_nameDetailsFragment"
+            app:destination="@id/nameDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginDetailsFragment"
+        android:name="com.nolek.application.data.ui.register.loginDetails.LoginDetailsFragment"
+        android:label="LoginDetailsFragment"
+        tools:layout="@layout/fragment_register_login_details">
+        <action
+            android:id="@+id/action_loginDetailsFragment_to_main_fragment_nav"
+            app:destination="@id/main_fragment_nav" />
+        <argument
+            android:name="firstName"
+            app:argType="string" />
+        <argument android:name="lastName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/nameDetailsFragment"
+        android:name="com.nolek.application.data.ui.register.nameDetails.NameDetailsFragment"
+        android:label="NameDetailsFragment"
+        tools:layout="@layout/fragment_register_name_details">
+        <action
+            android:id="@+id/action_nameDetailsFragment_to_loginDetailsFragment"
+            app:destination="@id/loginDetailsFragment" />
+    </fragment>
+<!--    allow all to logout-->
+    <action
+        android:id="@+id/action_global_to_loginFragment"
+        app:destination="@id/loginFragment"
+        app:popUpTo="@+id/loginFragment"
+        app:popUpToInclusive="true" />
+</navigation>

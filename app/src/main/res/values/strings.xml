@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Nolek App</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_top_label">Sign In</string>
+    <string name="login_button">Sign in</string>
+
+    <string name="register_name_details_top_label">Create an Account</string>
+    <string name="register_login_details_top_label">How you\'ll sign in</string>
+    <string name="register_email_hint">Email</string>
+    <string name="register_password_hint">Password</string>
+    <string name="register_first_name_hint">First name</string>
+    <string name="register_last_name_hint">Last name</string>
+    <string name="login_register_button">Create Account</string>
+
+    <string name="detail_tab_log_time">Log time</string>
+    <string name="detail_tab_step_no">Step Number</string>
+    <string name="detail_tab_tmp_1">TMP1</string>
+    <string name="detail_tab_tmp_2">TMP2</string>
+    <string name="detail_tab_b31">B31</string>
+    <string name="detail_tab_b32">B32</string>
+    <string name="detail_tab_b21">B21</string>
+    <string name="detail_tab_b22">B22</string>
+    <string name="detail_tab_p101">P101</string>
+    <string name="detail_tab_regulator_sp">Regulator SP</string>
+    <string name="detail_tab_regulator_fb">Regulator FB</string>
+    <string name="example_email">johnDoe42@gmail.com</string>
+    <string name="example_name">John Doe</string>
+    <string name="sign_out">Sign Out</string>
+
+</resources>
