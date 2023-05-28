@@ -1,16 +1,18 @@
 package com.nolek.application.data.di
 
+import android.content.Context
 import com.nolek.application.data.network.AuthenticationService
 import com.nolek.application.data.network.PLCDataService
-import com.nolek.application.data.repository.AuthenticationRepository
-import com.nolek.application.data.repository.NolekAuthenticationRepository
-import com.nolek.application.data.repository.NolekPLCMicroserviceRepository
-import com.nolek.application.data.repository.PLCRepository
+import com.nolek.application.data.network.room.dao.PlcDao
+import com.nolek.application.data.network.room.dao.SuggestionDao
+import com.nolek.application.data.network.room.db.AppDatabase
+import com.nolek.application.data.repository.*
 import com.squareup.moshi.*
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -29,9 +31,10 @@ object AppModule {
     @Provides
     fun providePLCRepository(
         plcApi: PLCDataService,
-        authRepository: AuthenticationRepository
+        authRepository: AuthenticationRepository,
+        plc: PlcDao
     ): PLCRepository {
-        return NolekPLCMicroserviceRepository(plcApi, authRepository)
+        return NolekPLCMicroserviceRepository(plcApi, authRepository, plc)
     }
 
     @Singleton
@@ -72,19 +75,29 @@ object AppModule {
             .build()
             .create(AuthenticationService::class.java)
 
-}
-class CustomJsonAdapter : JsonAdapter<Double>() {
-    @FromJson
-    override fun fromJson(reader: JsonReader): Double? {
-        if (reader.peek() != JsonReader.Token.STRING) {
-            return reader.nextDouble()
-        }
-        val value = reader.nextString()
-        return value.replace(",", ".").toDoubleOrNull()
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
+        return AppDatabase.getInstance(appContext)
     }
 
-    @ToJson
-    override fun toJson(writer: JsonWriter, value: Double?) {
-        writer.value(value)
+    @Provides
+    @Singleton
+    fun provideSuggestionDao(appDB: AppDatabase): SuggestionDao {
+        return appDB.suggestion()
     }
+
+    @Singleton
+    @Provides
+    fun provideSuggestionRepository(dao: SuggestionDao): SuggestionRepository {
+        return SQLiteSuggestionRepository(dao)
+    }
+
+    @Provides
+    @Singleton
+    fun providePlcDao(appDB: AppDatabase): PlcDao {
+        return appDB.plc()
+    }
+
+
 }
